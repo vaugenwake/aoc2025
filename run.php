@@ -3,7 +3,8 @@
 require_once "vendor/autoload.php";
 
 $runners = [
-    1 => \Vaugenwakeling\Aoc2025\Solutions\DayOne::class
+    1 => \Vaugenwakeling\Aoc2025\Solutions\DayOne::class,
+    2 => \Vaugenwakeling\Aoc2025\Solutions\DayTwo::class,
 ];
 
 if (!isset($argv[1])) {
@@ -13,6 +14,6 @@ if (!isset($argv[1])) {
 $inputFile = null;
 
 $exec = new $runners[$argv[1]]();
-//echo $exec->partOne();
+echo $exec->partOne();
 
-echo $exec->partTwo();
+//echo $exec->partTwo();
