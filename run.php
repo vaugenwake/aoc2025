@@ -10,5 +10,9 @@ if (!isset($argv[1])) {
     throw new Exception('Expected day');
 }
 
+$inputFile = null;
+
 $exec = new $runners[$argv[1]]();
-$exec->run();
+//echo $exec->partOne();
+
+echo $exec->partTwo();
