@@ -22,6 +22,45 @@ class DayTwo
         return $safeReports;
     }
 
+    public function partTwo(string $filename = self::INPUT_FILE_NAME_PT1) {
+        $data = [];
+
+        $safeReports = 0;
+
+        $this->readData($filename, $data);
+
+        foreach ($data as $report) {
+            if ($this->isSafeReport($report)) {
+                $safeReports++;
+                continue;
+            }
+
+            if ($this->isLooslySafeReport($report)) {
+                $safeReports++;
+            }
+        }
+
+        return $safeReports;
+    }
+
+    private function isLooslySafeReport(array $values): bool
+    {
+        $totalValues = count($values);
+
+        for ($i = 0; $i < $totalValues; $i++) {
+            $modValues = array_merge(
+                array_slice($values, 0, $i),
+                array_slice($values, $i + 1)
+            );
+
+            if ($this->isSafeReport($modValues)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private function isSafeReport(array $values): bool
     {
         $increasing = true;
@@ -61,8 +100,4 @@ class DayTwo
 
         fclose($handle);
     }
-
-//    public function partTwo(string $filename = self::INPUT_FILE_NAME_PT2) {
-//
-//    }
 }
